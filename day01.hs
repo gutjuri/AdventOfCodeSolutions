@@ -5,10 +5,7 @@
 import Data.List.Split (splitOn)
 import qualified Data.Set as Set
 
-findSeqSum = scanl (\acc x -> acc + readToInt x) 0
-    where
-        readToInt str | head str == '+' = (read $ tail str)
-                      | otherwise       = -(read $ tail str)
+findSeqSum xs = scanl (+) 0 $ map read $ map (filter (\c -> c /= '+')) xs
 
 -- First part
 ch1 = do
