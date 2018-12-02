@@ -37,6 +37,6 @@ removeDiff (x:xs) (y:ys) | x == y    = x : removeDiff xs ys
 findClosest xs = uncurry removeDiff $ head $ filter (\p -> dist p == 1) $ selfCrossProd xs
 
 -- Solution 2
-ch2= do
+ch2 = do
     contents <- readFile "inp2a.txt"
     return $ findClosest $ lines contents
