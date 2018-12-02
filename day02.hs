@@ -9,10 +9,8 @@ occsInString str = foldl toTuple (False, False) $ map (flip containsTimes str) l
     where
         toTuple (a, b) n | n == 2    = (True, b)
                          | n == 3    = (a, True)
-                         | otherwise = (a, b)
+                         | otherwise = (a, b)                     
 
-                         
-                         
 checksum xs = f $ foldl (\(a, b) (x, y) -> (a + fromEnum x, b + fromEnum y)) (0, 0) $ map occsInString xs
     where 
         f (a, b) = a * b
