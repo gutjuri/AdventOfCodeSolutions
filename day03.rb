@@ -5,7 +5,7 @@ fields = Array.new(1000) { |x| Array.new(1000, 0) }
 
 regex = /.([0-9]*).{3}([0-9]*).([0-9]*).{2}([0-9]*).([0-9]*)/
 
-patches = File.read('inp3a.txt').split("\n").map { |l| l.match(regex).captures.map(&:to_i)}
+patches = File.read('inp3a.txt').split("\n").map { |l| l.match(regex).captures.map(&:to_i) }
 
 patches.each do |area|
   area[3].times do |x|
