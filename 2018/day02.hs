@@ -4,7 +4,7 @@
 -- Part 1
 letters = "abcdefghijklmnopqrstuvwxyz"
 
-containsTimes l = foldl (\acc x -> if x == l then acc+1 else acc) 0
+containsTimes l = length . filter (==l)
 
 occsInString str = foldl toTuple (False, False) $ map (flip containsTimes str) letters
     where
@@ -12,7 +12,7 @@ occsInString str = foldl toTuple (False, False) $ map (flip containsTimes str) l
                          | n == 3    = (a, True)
                          | otherwise = (a, b)
 
-checksum xs = f $ foldl (\(a, b) (x, y) -> (a + fromEnum x, b + fromEnum y)) (0, 0) $ map occsInString xs
+checksum = f . foldl (\(a, b) (x, y) -> (a + fromEnum x, b + fromEnum y)) (0, 0) . map occsInString
     where 
         f (a, b) = a * b
 
@@ -28,13 +28,13 @@ findFirst f (x:xs) | f x        = x
 
 selfCrossProd xs = [(x, y) | x <- xs, y <- xs]
 
-dist (a, b) = foldl (\acc (x, y) -> acc + fromEnum (x /= y)) 0 $ zip a b
+dist = foldl (\acc (x, y) -> acc + fromEnum (x /= y)) 0 . uncurry zip 
 
 removeDiff [] _          = []
 removeDiff (x:xs) (y:ys) | x == y    = x : removeDiff xs ys
                          | otherwise = removeDiff xs ys
 
-findClosest xs = uncurry removeDiff $ head $ filter (\p -> dist p == 1) $ selfCrossProd xs
+findClosest = uncurry removeDiff . head . filter ((==1) . dist) . selfCrossProd
 
 -- Solution 2
 ch2 = do
