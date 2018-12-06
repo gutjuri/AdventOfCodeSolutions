@@ -5,7 +5,7 @@
 import Data.List.Split (splitOn)
 import qualified Data.Set as Set
 
-findSeqSum xs = scanl (+) 0 $ map read $ map (filter (\c -> c /= '+')) xs
+findSeqSum = scanl (+) 0 . map read . map (filter (\c -> c /= '+'))
 
 -- First part
 ch1 = do
@@ -14,13 +14,13 @@ ch1 = do
     return $ last $ findSeqSum (splitOn "\n" contents)
 
 -- b)
-dup xs = dup' xs Set.empty
-  where dup' [] _     = error "Never happens ;)"
-        dup' (x:xs) s | Set.member x s = x
-                      | otherwise      = dup' xs (Set.insert x s)
+dup = dup' Set.empty
+  where dup' s (x:xs) | Set.member x s = x
+                      | otherwise      = dup' (Set.insert x s) xs
 
 -- Second part
 ch2 = do
     let file = "inp1a.txt"
     contents <- readFile file
     return $ dup $ findSeqSum $ cycle (splitOn "\n" contents)
+    
