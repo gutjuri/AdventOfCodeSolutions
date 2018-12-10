@@ -25,9 +25,11 @@ readMeta 0 xs     = ([], xs)
 readMeta c (x:xs) = (x:ys, r)
     where (ys, r) = readMeta (c-1) xs
 
+foldTree :: ([b] -> b) -> ([Int] -> b) -> (b -> b -> b) -> Tree -> b
 foldTree fc fm fz = m
     where m (Node cs ms) = fz (fc $ map m cs) (fm ms)
 
+secondCheck :: Tree -> Int
 secondCheck (Node [] ms)       = sum ms
 secondCheck (Node cs [])       = 0
 secondCheck (Node cs (m:ms)) | m-1 >= l    = secondCheck (Node cs ms)
