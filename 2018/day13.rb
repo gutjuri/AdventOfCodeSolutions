@@ -1,6 +1,6 @@
 # Day 13
 
-rails = Array.new
+rails = []
 trains = []
 char_mappings = Hash.new { |h, k| h[k] = k }
 char_mappings['>'] = '-'
