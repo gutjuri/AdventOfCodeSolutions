@@ -1,4 +1,4 @@
-# AdventOfCodeSolutions
+# Advent of Code - Solutions
 Solutions for the AoC  - https://adventofcode.com/
 
 I've started doing this challenge in 2018. Maybe I will try doing the challenges of the previous years sometime in the future. When that's the case, I'll upload them here. No promises tho.
