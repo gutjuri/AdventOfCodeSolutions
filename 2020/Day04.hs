@@ -1,5 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 
+module Day04 where
+
 import           Data.List
 import           Data.Char
 
@@ -48,8 +50,9 @@ isValid2 fs = isValid fs && all validateField fs
   valHcl ('#' : xs) = length xs == 6 && all (`elem` "0123456789abcdef") xs
   valHcl _          = False
 
-main :: IO ()
-main = do
-  inp <- parseInput <$> getContents
+day04 :: IO ()
+day04 = do
+  putStrLn "Day04"
+  inp <- parseInput <$> readFile "in04.txt"
   print $ length $ filter isValid inp
   print $ length $ filter isValid2 inp

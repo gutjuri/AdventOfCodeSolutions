@@ -1,3 +1,5 @@
+module Day02 where
+
 import           Data.List
 import           Data.Bits
 
@@ -34,8 +36,9 @@ validate2 r pw =
   (pw !? (minAppearences r - 1) == Just (letter r))
     `xor` (pw !? (maxAppearances r - 1) == Just (letter r))
 
-main :: IO ()
-main = do
-  input <- map readRulePw . lines <$> getContents
+day02 :: IO ()
+day02 = do
+  putStrLn "Day02"
+  input <- map readRulePw . lines <$> readFile "in02.txt"
   print $ length $ filter (uncurry validate) input
   print $ length $ filter (uncurry validate2) input

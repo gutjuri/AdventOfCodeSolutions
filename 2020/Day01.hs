@@ -1,3 +1,5 @@
+module Day01 where
+
 import qualified Data.Set                      as S
 import           Data.List
 import           Data.Maybe
@@ -21,8 +23,9 @@ triplets xs = do
 ch2 :: [Int] -> IO ()
 ch2 = print . product . fromJust . find ((== 2020) . sum) . triplets
 
-main :: IO ()
-main = do
-  ns <- map read . lines <$> getContents
+day01 :: IO ()
+day01 = do
+  putStrLn "Day01"
+  ns <- map read . lines <$> readFile "in01.txt"
   ch1 ns S.empty
   ch2 ns

@@ -1,3 +1,5 @@
+module Day10 where
+
 import           Data.List
 import qualified Data.Map.Strict               as M
 import           Data.Map.Strict                ( Map )
@@ -21,8 +23,9 @@ countw cs (x : xs) m
         (s2, m'') = countw cs xs m'
     in  (s1 + s2, M.insert cs (s1 + s2) m'')
 
-main :: IO ()
-main = do
-  inp <- sort . map read . lines <$> getContents
+day10 :: IO ()
+day10 = do
+  putStrLn "Day10"
+  inp <- sort . map read . lines <$> readFile "in10.txt"
   print $ p1 inp
   print $ fst $ countw 0 inp M.empty

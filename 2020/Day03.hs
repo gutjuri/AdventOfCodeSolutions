@@ -1,3 +1,5 @@
+module Day03 where
+
 p1Nextstep :: [String] -> Int -> Int
 p1Nextstep [] _ = 0
 p1Nextstep (ln : ls) pos
@@ -12,9 +14,10 @@ p2Nextstep (ln : ls) pos dx dy
   | otherwise
   = p2Nextstep (drop (dy - 1) ls) ((pos + dx) `mod` length ln) dx dy
 
-main :: IO ()
-main = do
-  ls <- lines <$> getContents
+day03 :: IO ()
+day03 = do
+  putStrLn "Day03"
+  ls <- lines <$> readFile "in03.txt"
   print $ p1Nextstep ls 0
   print $ product
     [ p2Nextstep ls 0 1 1

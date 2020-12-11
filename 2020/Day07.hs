@@ -1,3 +1,5 @@
+module Day07 where
+
 import qualified Data.Map.Strict               as M
 import           Data.Map.Strict                ( Map )
 
@@ -26,9 +28,10 @@ mustContain rls n = M.foldrWithKey'
   rule
   where rule = M.findWithDefault M.empty n rls
 
-main :: IO ()
-main = do
-  inp <- lines <$> getContents
+day07 :: IO ()
+day07 = do
+  putStrLn "Day07"
+  inp <- lines <$> readFile "in07.txt"
   let rules = buildRuleset inp
   print $ length $ filter (canReachShinyGold rules) (M.keys rules)
   print $ mustContain rules "shiny gold"

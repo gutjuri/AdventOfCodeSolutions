@@ -1,3 +1,5 @@
+module Day05 where
+
 import           Data.List
 import           Data.Bifunctor
 
@@ -18,9 +20,10 @@ findMissing (x : xs) = go x xs
   go n (n' : ns) | n + 1 /= n' = n + 1
                  | otherwise   = go n' ns
 
-main :: IO ()
-main = do
-  inp <- lines <$> getContents
+day05 :: IO ()
+day05 = do
+  putStrLn "Day05"
+  inp <- lines <$> readFile "in05.txt"
   let seatNrs = map seatId inp
   print $ maximum seatNrs
   print $ findMissing $ sort seatNrs

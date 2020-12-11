@@ -1,3 +1,5 @@
+module Day08 where
+
 import           Data.List
 import           Data.Maybe
 import qualified Data.Array                    as A
@@ -59,9 +61,10 @@ possibleProgrammes instr pos
   flipNJ (Jmp  x) = Noop x
   flipNJ (Noop x) = Jmp x
 
-main :: IO ()
-main = do
-  inp <- map parseLine . lines <$> getContents
+day08 :: IO ()
+day08 = do
+  putStrLn "Day08"
+  inp <- map parseLine . lines <$> readFile "in08.txt"
   let inpArray = A.listArray (1, length inp) $ zip inp $ repeat False
   print $ runUntilDoubleInst inpArray 1 0
   print $ head $ mapMaybe (\i -> runUntilTermination i 1 0) $ possibleProgrammes

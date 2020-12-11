@@ -1,3 +1,5 @@
+module Day09 where
+
 import           Data.List
 import           Data.Bifunctor
 import           Data.Maybe
@@ -20,9 +22,10 @@ isSumRange targ (x : xs) = go [x] x xs
                         | csum + l == targ = Just (l : sval)
                         | otherwise        = go (l : sval) (csum + l) ls
 
-main :: IO ()
-main = do
-  inp <- map read . lines <$> getContents
+day09 :: IO ()
+day09 = do
+  putStrLn "Day09"
+  inp <- map read . lines <$> readFile "in09.txt"
   let solution1 = fromJust (find (not . sumOf25Prev) $ tails inp) !! prefixLen
   print solution1
   let solution2 = head $ mapMaybe (isSumRange solution1) $ tails inp
