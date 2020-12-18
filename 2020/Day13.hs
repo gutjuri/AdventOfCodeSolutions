@@ -19,7 +19,7 @@ extendedEu :: Integer -> Integer -> (Integer, Integer)
 extendedEu a 0 = (1, 0)
 extendedEu a b = (t, s - q * t)
   where (q, r) = quotRem a b
-	      (s, t) = extendedEu b r
+        (s, t) = extendedEu b r
 
 day13 :: IO ()
 day13 = do
