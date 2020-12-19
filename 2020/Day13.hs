@@ -15,11 +15,12 @@ closestBus ts = minimum . map (\t -> (t - ts `mod` t, t))  . catMaybes
 indexBusNrs :: [Maybe Int] -> [(Int, Int)]
 indexBusNrs = catMaybes . zipWith (\i mb -> (i,) <$> mb) [0 ..]
 
-extendedEu :: Integer -> Integer -> (Integer, Integer)
+extendedEu :: Int -> Int -> (Int, Int)
 extendedEu a 0 = (1, 0)
 extendedEu a b = (t, s - q * t)
-  where (q, r) = quotRem a b
-	      (s, t) = extendedEu b r
+  where 
+    (q, r) = quotRem a b
+    (s, t) = extendedEu b r
 
 day13 :: IO ()
 day13 = do
