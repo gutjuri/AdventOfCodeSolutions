@@ -2,29 +2,34 @@
 
 module Day13 where
 
-import Data.Maybe
-import Data.Bifunctor
-import Text.Read
+import           Data.Maybe
+import           Data.Bifunctor
+import           Text.Read
 
-parseInp :: String -> [Maybe Int]
-parseInp = map readMaybe . words . map (\c -> if c == ',' then ' ' else c) 
+parseInp :: String -> [Maybe Integer]
+parseInp = map readMaybe . words . map (\c -> if c == ',' then ' ' else c)
 
-closestBus :: Int -> [Maybe Int] -> (Int, Int)
-closestBus ts = minimum . map (\t -> (t - ts `mod` t, t))  . catMaybes
+closestBus :: Integer -> [Maybe Integer] -> (Integer, Integer)
+closestBus ts = minimum . map (\t -> (t - ts `mod` t, t)) . catMaybes
 
-indexBusNrs :: [Maybe Int] -> [(Int, Int)]
-indexBusNrs = catMaybes . zipWith (\i mb -> (i,) <$> mb) [0 ..]
+indexBusNrs :: [Maybe Integer] -> [(Integer, Integer)]
+indexBusNrs = map (\(i, b) -> ((b - i) `mod` b, b)) . catMaybes . zipWith
+  (\i mb -> (i, ) <$> mb)
+  [0 ..]
 
-extendedEu :: Int -> Int -> (Int, Int)
-extendedEu a 0 = (1, 0)
-extendedEu a b = (t, s - q * t)
-  where 
-    (q, r) = quotRem a b
-    (s, t) = extendedEu b r
+findSol :: [(Integer, Integer)] -> Integer
+findSol = go 0 1
+ where
+  go time factor (x@(ind, busnr) : xs)
+    | time `mod` busnr == ind = go time (factor * busnr) xs
+    | otherwise               = go (time + factor) factor (x : xs)
+  go time _ _ = time
 
 day13 :: IO ()
 day13 = do
   putStrLn "Day13"
-  (depTime, busses) <- bimap read parseInp . break (=='\n') <$> readFile "in13.txt"
-  print $  uncurry (*) $ closestBus depTime busses
+  (depTime, busses) <- bimap read parseInp . break (== '\n') <$> readFile
+    "in13.txt"
+  print $ uncurry (*) $ closestBus depTime busses
+  print $ findSol $ indexBusNrs busses
 
