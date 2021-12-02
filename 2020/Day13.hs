@@ -25,7 +25,6 @@ findSol = go 0 1
     | otherwise               = go (time + factor) factor (x : xs)
   go time _ _ = time
 
-
 day13 :: IO ()
 day13 = do
   putStrLn "Day13"
