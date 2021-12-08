@@ -31,15 +31,7 @@ digits = M.fromList $ zip
   [0 ..]
 
 possibleMappings :: [M.Map Char Char]
-possibleMappings = do
-  a' <- ls
-  b' <- ls \\ [a']
-  c' <- ls \\ [a', b']
-  d' <- ls \\ [a', b', c']
-  e' <- ls \\ [a', b', c', d']
-  f' <- ls \\ [a', b', c', d', e']
-  g' <- ls \\ [a', b', c', d', e', f']
-  return $ M.fromList $ zip [a', b', c', d', e', f', g'] ls
+possibleMappings = map (\l -> M.fromList $ zip l ls) (permutations ls)
   where ls = "abcdefg"
 
 applyMapping :: M.Map Char Char -> String -> String
