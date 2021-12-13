@@ -31,7 +31,7 @@ step = second (M.map (\x -> if x > 9 then 0 else x)). go S.empty . M.map (+ 1)
       flashing = M.filterWithKey (\k _ -> not $ S.member k flashed)
         $ M.filter (> 9) field
       flashNeighbours = concatMap neighbours $ M.keys flashing
-      newField = foldl' (\acc x -> M.adjust (+ 1) x acc) field flashNeighbours
+      newField = foldl' (flip (M.adjust (+ 1))) field flashNeighbours
       newFlashed = flashed `S.union` S.fromAscList (M.keys flashing)
       (n, nf) =
         if M.null flashing then (0, newField) else go newFlashed newField
@@ -48,7 +48,7 @@ p2 :: Field -> Int
 p2 = go 0
   where
     go x f | all (==0) f = x
-           | otherwise = go (x+1) $ snd $ step f 
+           | otherwise = go (x+1) $ snd $ step f
 
 main :: IO ()
 main = do
