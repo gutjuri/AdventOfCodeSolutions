@@ -36,11 +36,10 @@ p2 i s = printField $ foldl' (flip applyFold) s i
 printField :: S.Set Point -> String
 printField s =
   unlines
-    . chunksOf (maxX+1)
+    . chunksOf (maxX + 1)
     $ [ (\p -> if S.member p s then '#' else ' ') (x, y)
-      | 
-      y <- [0 .. maxY],
-      x <- [0 .. maxX]
+      | y <- [0 .. maxY]
+      , x <- [0 .. maxX]
       ]
  where
   maxX = fst $ maximumBy (compare `on` fst) s
@@ -50,4 +49,4 @@ main :: IO ()
 main = do
   (pts, instr) <- parseInp <$> readFile "in13.txt"
   print $ p1 (head instr) pts
-  putStrLn $ p2  instr pts
+  putStrLn $ p2 instr pts
