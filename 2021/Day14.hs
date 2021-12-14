@@ -2,14 +2,7 @@ module Main where
 
 import qualified Data.Map.Strict               as M
 import           Data.List
-import           Data.Bifunctor                 ( Bifunctor
-                                                  ( bimap
-                                                  , second
-                                                  , first
-                                                  )
-                                                )
-import           Data.List.Split                ( splitOn )
-
+import           Data.Bifunctor                 
 
 type Rules = M.Map String Char
 type Occurances = M.Map Char Integer
