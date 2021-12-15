@@ -1,9 +1,9 @@
 module Day19 where
 
-import qualified Data.Map.Strict               as M
-import           Data.Map.Strict                ( Map )
 import           Data.Bifunctor
 import           Data.List
+import qualified Data.Map.Strict               as M
+import           Data.Map.Strict                ( Map )
 
 data Rule = Literal Char | Rules [[Int]] deriving Show
 
@@ -37,7 +37,7 @@ matchRule m expr ((Rules rls) : sx) = any (\r -> matchRule m expr (r ++ sx))
 
 p1 :: Map Int Rule -> [String] -> Int
 p1 m = length . filter
-  (\str -> matchRule m str ((\(Rules x) -> map (m M.!) $ (x !! 0)) (m M.! 0)))
+  (\str -> matchRule m str ((\(Rules x) -> map (m M.!) (head x)) (m M.! 0)))
 
 day19 :: IO ()
 day19 = do

@@ -13,13 +13,6 @@ import           Data.Char
 data Expr = Add Expr Expr | Mul Expr Expr | Val Integer
   deriving Show
 
--- sc :: Parser ()
--- sc = space (void spaceChar) lineComment blockComment
---   where lineComment  = skipLineComment "//"
---         blockComment = skipBlockComment "/*" "*/"
-
---lexeme = L.lexeme sc
-
 integer :: Parser Integer
 integer = do
   i <- many digit
@@ -38,12 +31,11 @@ table = [[binary "*" Mul AssocLeft, binary "+" Add AssocLeft]]
 table2 = [[binary "+" Add AssocLeft], [binary "*" Mul AssocLeft]]
 
 --binary :: String -> (Expr -> Expr -> Expr) -> Assoc -> _
-binary name fun assoc = Infix
+binary name fun = Infix
   (do
     string name
     return fun
   )
-  assoc
 
 expr :: Parser Expr
 expr = buildExpressionParser table term
