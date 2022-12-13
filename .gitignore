@@ -2,3 +2,8 @@ out/
 *.hi
 *.o
 *-exe
+.bloop
+.metals
+project
+target
+.bsp

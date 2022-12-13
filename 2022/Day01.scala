@@ -12,7 +12,7 @@ def readInput: List[Elve] =
             }
     )
 
-def mostCals(elves : List[Elve]): Int = elves.map(_.cals.sum).max
+def mostCals(elves: List[Elve]): Int = elves.map(_.cals.sum).max
 
 def most3Cals(elves: List[Elve]): Int = elves.map(_.cals.sum).sortWith(_ > _).take(3).sum
 
@@ -20,3 +20,4 @@ def most3Cals(elves: List[Elve]): Int = elves.map(_.cals.sum).sortWith(_ > _).ta
     val elves = readInput
     println(mostCals(elves))
     println(most3Cals(elves))
+ 
