@@ -8,3 +8,4 @@ project
 target
 .bsp
 *.txt
+.stack-work

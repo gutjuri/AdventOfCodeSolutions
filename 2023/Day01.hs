@@ -38,6 +38,6 @@ getFirstWordNum xs = listToMaybe $ catMaybes $ map (\(w, n) -> if w `isPrefixOf`
         pairs = [("one", 1), ("two", 2), ("three", 3), ("four", 4), ("five", 5), ("six", 6), ("seven", 7), ("eight", 8), ("nine", 9)]
 
 main = do
-    inp <- getContents
+    inp <- readFile "2023/in01.txt"
     print $ sum $ map parseLine $ lines inp
     print $ sum $ map parseLine2 $ lines  inp

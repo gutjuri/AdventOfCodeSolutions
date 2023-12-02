@@ -1,9 +1,9 @@
 import           Data.Array
-import           Data.Char
+import           Data.Bifunctor                 ( Bifunctor(bimap) )
+import           Data.Char                      ( digitToInt )
+import           Data.List                      ( foldl' )
 import qualified Data.Map.Strict               as M
 import qualified Data.Set                      as S
-import           Data.List                      ( foldl' )
-import           Data.Bifunctor                 ( Bifunctor(bimap) )
 
 
 type Point = (Int, Int)
