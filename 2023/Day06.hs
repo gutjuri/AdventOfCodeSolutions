@@ -12,7 +12,7 @@ parseInp = uncurry zip . bimap parseLine parseLine . break (=='\n')
         parseLine = map read . drop 1 . words
 
 solveQuadratic :: (Double, Double, Double) -> (Int, Int)
-solveQuadratic (_, b, c) = traceShowId (floor $ (-b+rad)/(-2), ceiling $ (-b - rad)/(-2))
+solveQuadratic (_, b, c) = (floor $ (-b+rad)/(-2), ceiling $ (-b - rad)/(-2))
     where
         rad = sqrt((b^2) + 4*c)
 
