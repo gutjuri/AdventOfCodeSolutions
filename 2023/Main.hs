@@ -11,7 +11,7 @@ run dayNr func = do
     func
 
 main = do
-    -- Day01.main
+    run 1 Day01.main
     run 2 Day02.main
     run 3 Day03.main
     run 4 Day04.main
