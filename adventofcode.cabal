@@ -48,6 +48,7 @@ executable 2023
       Day03
       Day04
       Day05
+      Day06
       Paths_adventofcode
   autogen-modules:
       Paths_adventofcode
