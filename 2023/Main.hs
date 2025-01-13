@@ -4,6 +4,7 @@ import qualified Day03
 import qualified Day04
 import qualified Day05
 import qualified Day06
+import qualified Day07
 
 run :: Int -> IO () -> IO ()
 run dayNr func = do
@@ -19,3 +20,4 @@ main = do
     run 4 Day04.main
     run 5 Day05.main
     run 6 Day06.main
+    run 7 Day07.main

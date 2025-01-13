@@ -59,6 +59,9 @@ getBreakPts = trimap sort . foldl' f ([], [], [])
         f (xs, ys, zs) (_, (a,b,c,d,e,f)) = (a:b:xs, c:d:ys, e:f:zs)
         trimap f (a, b, c) = (f a, f b, f c)
 
+intersectMinus :: Range -> Range -> [Range]
+intersectMinus on (a', b', c', d', e', f') = breakInp ([a',b'], [c',d'], [e',f']) $  [(True, on)]
+
 breakInp :: ([Int], [Int], [Int]) -> [(Bool, Range)] -> [(Bool, Range)]
 breakInp (xbps, ybps, zbps) = concatMap breakUp
  where
